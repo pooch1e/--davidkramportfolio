@@ -7,32 +7,24 @@ export function Footer() {
           <div>
             <h4 className="font-serif text-lg font-semibold mb-3">Contact</h4>
             <p className="text-sm text-foreground/60">
-              The University of Melbourne<br />
-              Senior Fellow
+              Email
+              <br />
+              Davidkram@bigpond.com
             </p>
-          </div>
-          
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-serif text-lg font-semibold mb-3">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="/about" className="hover:text-accent-light transition-colors">About</a></li>
-              <li><a href="/performances" className="hover:text-accent-light transition-colors">Performances</a></li>
-              <li><a href="/contact" className="hover:text-accent-light transition-colors">Contact</a></li>
-            </ul>
-          </div>
-          
-          {/* Social/Professional */}
-          <div>
-            <h4 className="font-serif text-lg font-semibold mb-3">Connect</h4>
+            <br />
             <p className="text-sm text-foreground/60">
-              [Social media links or professional networks can be added here]
+              WhatsApp
+              <br />
+              +61 412 114 725
             </p>
           </div>
         </div>
-        
+
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-foreground/60">
-          <p>&copy; {new Date().getFullYear()} Dr David Kram. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Dr David Kram. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>

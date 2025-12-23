@@ -1,10 +1,8 @@
 import Link from 'next/link';
 
 const navItems = [
-  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/performances', label: 'Performances' },
-  { href: '/recordings', label: 'Recordings' },
+  { href: '/work', label: 'Work' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -15,8 +13,7 @@ export function Navbar() {
         <Link
           key={item.href}
           href={item.href}
-          className="text-sm font-medium tracking-wide uppercase transition-colors hover:text-accent-light relative group"
-        >
+          className="text-sm font-medium tracking-wide uppercase transition-colors hover:text-accent-light relative group">
           {item.label}
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-light transition-all group-hover:w-full"></span>
         </Link>
