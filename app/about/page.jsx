@@ -23,9 +23,9 @@ export default function About() {
               </p>
             </div>
             <a
-              href="/cv.pdf"
+              href="/pdf/CV-Repo.pdf"
               download
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-light transition-colors shadow-md hover:shadow-lg">
+              className="target-blank inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-light transition-colors shadow-md hover:shadow-lg">
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -50,7 +50,7 @@ export default function About() {
               <p className="text-foreground/70">Download my biography</p>
             </div>
             <a
-              href="/cv.pdf"
+              href="/pdf/2025-12-24 concise_bio.pdf"
               download
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-light transition-colors shadow-md hover:shadow-lg">
               <svg
@@ -76,7 +76,7 @@ export default function About() {
             {/* Gallery Image 1 */}
             <div className="relative aspect-4/3 rounded-lg overflow-hidden shadow-xl group">
               <Image
-                src="/gallery-1.jpg"
+                src="/gallery/2025-11-15 Dr David Kram AM.jpg"
                 fill
                 alt="Dr David Kram conducting"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -95,7 +95,7 @@ export default function About() {
             {/* Gallery Image 2 */}
             <div className="relative aspect-4/3 rounded-lg overflow-hidden shadow-xl group">
               <Image
-                src="/gallery-2.jpg"
+                src="/gallery/David Kram laughing shot.jpg"
                 fill
                 alt="Dr David Kram in rehearsal"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
