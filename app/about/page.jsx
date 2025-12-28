@@ -74,7 +74,7 @@ export default function About() {
         <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20 border-t border-border">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Gallery Image 1 */}
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl group">
+            <div className="relative aspect-4/3 rounded-lg overflow-hidden shadow-xl group">
               <Image
                 src="/gallery-1.jpg"
                 fill
@@ -82,7 +82,7 @@ export default function About() {
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <p className="text-white font-medium">
                     Performance at [Venue Name]
@@ -93,7 +93,7 @@ export default function About() {
             </div>
 
             {/* Gallery Image 2 */}
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl group">
+            <div className="relative aspect-4/3 rounded-lg overflow-hidden shadow-xl group">
               <Image
                 src="/gallery-2.jpg"
                 fill
@@ -101,7 +101,7 @@ export default function About() {
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <p className="text-white font-medium">
                     Rehearsal at [Venue Name]
