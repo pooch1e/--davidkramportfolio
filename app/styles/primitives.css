@@ -1,0 +1,20 @@
+/**
+ * primitives.css — raw colour values for the Programme design system.
+ * A single off-white → black "ink" ramp with a faint warm bias, like uncoated
+ * programme-book stock. Nothing outside semantic.css should reference these.
+ */
+
+:root {
+  --ink-0: #fbfaf8;
+  --ink-50: #f5f4f1;
+  --ink-100: #ecebe7;
+  --ink-200: #dad9d4;
+  --ink-300: #bdbcb6;
+  --ink-400: #94938d;
+  --ink-500: #6e6d68;
+  --ink-600: #53524e;
+  --ink-700: #3c3b38;
+  --ink-800: #262624;
+  --ink-900: #171716;
+  --ink-950: #0d0d0c;
+}
