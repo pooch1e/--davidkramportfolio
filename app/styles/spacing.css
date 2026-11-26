@@ -18,6 +18,9 @@
   --page-max: 80rem;
   --gutter: clamp(1rem, 4vw, 3rem);
 
+  --footer-trigger: 2.5rem;
+  --sheet-max: 90dvh;
+
   --shape-radius: 0;
   --rule: 1px;
   --rule-heavy: 2px;

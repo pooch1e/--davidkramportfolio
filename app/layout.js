@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="flex min-h-dvh flex-col">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-(--footer-trigger)">{children}</main>
         <Footer />
       </body>
     </html>
