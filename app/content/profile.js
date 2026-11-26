@@ -18,7 +18,7 @@ export const person = {
 };
 
 export const welcome = [
-  "David Kram here. Welcome to my web site. It’s focussed on my long professional musical experience, mostly as an international conductor.",
+  "David Kram here. Welcome to my website. It’s focused on my long professional musical experience, mostly as an international conductor.",
   "When I moved to Australia I branched out into tertiary education, arts management and composition. For the last ten years I have been head-hunted for leadership roles in three areas of community service, so my life is a rich tapestry, ever embarking on new avenues.",
 ];
 
@@ -31,7 +31,7 @@ export const biography = [
 export const honour = {
   title: "Member of the Order of Australia",
   citation:
-    "Significant service to the performing arts, to opera and chamber choirs, education.",
+    "Significant service to the performing arts, to opera and chamber choirs, and to education.",
 };
 
 export const downloads = [
@@ -42,7 +42,7 @@ export const downloads = [
 export const images = {
   conducting: {
     src: "/dkMain.jpg",
-    alt: "David Kram laughing as he conducts an outdoor crowd, in white tie and a red bow tie",
+    alt: "David Kram laughing as he conducts an outdoor crowd, in tails and a red bow tie",
     width: 4237,
     height: 2818,
   },
