@@ -1,0 +1,30 @@
+/**
+ * wrangler.jsonc — Cloudflare Workers config for the OpenNext build of
+ * davidkram.com. Every route is prerendered, so the incremental cache reads
+ * from static assets (see open-next.config.ts) and no R2 bucket is needed.
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "davidkramportfolio",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-11-01",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			// OpenNext calls back into its own worker for cache work; the service name must equal "name" above.
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "davidkramportfolio"
+		}
+	],
+	"images": {
+		// next/image resizing runs through Cloudflare Images; without it the 9–12 MB originals would ship as-is.
+		"binding": "IMAGES"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

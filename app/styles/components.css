@@ -1,0 +1,260 @@
+/**
+ * components.css — the few component styles that need states Tailwind
+ * utilities express poorly: hard-edged buttons with press feedback, the nav
+ * underline, the one-time page-load stagger and the scroll image reveal.
+ * All values come from the token layers.
+ */
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0.85em 1.4em;
+    font-family: var(--type-mono);
+    font-size: var(--type-xs);
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    border: var(--rule) solid var(--action);
+    border-radius: var(--shape-radius);
+    cursor: pointer;
+    user-select: none;
+    transition:
+      transform var(--duration-press) var(--curve-out),
+      background-color var(--duration-hover) ease,
+      color var(--duration-hover) ease,
+      border-color var(--duration-hover) ease;
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  .btn svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex: none;
+  }
+
+  .btn-primary {
+    background: var(--action);
+    color: var(--on-action);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--fg);
+    border-color: var(--line-strong);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      background: var(--action-hover);
+      border-color: var(--action-hover);
+    }
+
+    .btn-secondary:hover {
+      background: var(--fg);
+      color: var(--bg);
+    }
+  }
+
+  .nav-link {
+    position: relative;
+    padding-block: var(--space-1);
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: var(--rule);
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 200ms var(--curve-out);
+  }
+
+  .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  .theme-option {
+    color: var(--fg-muted);
+    transition:
+      transform var(--duration-press) var(--curve-out),
+      color var(--duration-hover) ease;
+  }
+
+  .theme-option:active {
+    transform: scale(0.97);
+  }
+
+  .theme-option[aria-pressed="true"] {
+    background: var(--action);
+    color: var(--on-action);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .theme-option[aria-pressed="false"]:hover {
+      color: var(--fg);
+    }
+  }
+
+  .text-link {
+    text-decoration: underline;
+    text-decoration-thickness: var(--rule);
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color var(--duration-hover) ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .text-link:hover {
+      text-decoration-color: var(--fg-muted);
+    }
+  }
+
+  .footer-trigger {
+    height: var(--footer-trigger);
+    padding-bottom: env(safe-area-inset-bottom);
+    box-sizing: content-box;
+    cursor: pointer;
+    transition: color var(--duration-hover) ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer-trigger:hover {
+      color: var(--fg-muted);
+    }
+  }
+
+  /* A modal <dialog> sits in the top layer, so it escapes the fixed footer it is rendered inside. */
+  .sheet {
+    position: fixed;
+    inset: auto 0 0 0;
+    width: 100%;
+    max-width: none;
+    max-height: var(--sheet-max);
+    margin: 0;
+    padding: 0 0 env(safe-area-inset-bottom);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--bg-raised);
+    color: var(--fg);
+    border: 0;
+    border-top: var(--rule) solid var(--line-strong);
+    border-radius: var(--shape-radius);
+    transform: translateY(0);
+    transition: transform var(--duration-enter) var(--curve-out);
+  }
+
+  .sheet::backdrop {
+    background: var(--overlay);
+    opacity: 1;
+    transition: opacity var(--duration-enter) var(--curve-out);
+  }
+
+  .sheet[data-closing] {
+    transform: translateY(100%);
+    transition-duration: 280ms;
+  }
+
+  .sheet[data-closing]::backdrop {
+    opacity: 0;
+    transition-duration: 280ms;
+  }
+
+  @starting-style {
+    .sheet[open] {
+      transform: translateY(100%);
+    }
+
+    .sheet[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  /* Seen once per page load, so a short stagger is earned; --i is set inline per element. */
+  .enter {
+    animation: enter var(--duration-enter) var(--curve-out) both;
+    animation-delay: calc(var(--i, 0) * var(--stagger));
+  }
+
+  /*
+   * Server render is always visible. Reveal.jsx sets "hidden" only for
+   * elements still below the fold, and only "shown" carries a transition,
+   * so hiding is instant and never seen.
+   */
+  .reveal {
+    overflow: hidden;
+  }
+
+  .reveal[data-state="shown"] {
+    transition: clip-path var(--duration-reveal) var(--curve-in-out);
+  }
+
+  .reveal[data-state="shown"] > * {
+    transition: transform var(--duration-reveal) var(--curve-in-out);
+  }
+
+  .reveal[data-state="hidden"] {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .reveal[data-state="hidden"] > * {
+    transform: scale(1.06);
+  }
+
+  .reveal[data-state="shown"] {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter {
+    animation-name: enter-fade;
+  }
+
+  .btn:active {
+    transform: none;
+  }
+
+  .sheet,
+  .sheet::backdrop {
+    transition: none;
+  }
+
+  .reveal[data-state="shown"],
+  .reveal[data-state="shown"] > * {
+    transition: opacity var(--duration-enter) ease;
+  }
+
+  .reveal[data-state="hidden"] {
+    clip-path: none;
+    opacity: 0;
+  }
+
+  .reveal[data-state="hidden"] > * {
+    transform: none;
+  }
+}

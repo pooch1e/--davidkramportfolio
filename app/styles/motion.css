@@ -1,0 +1,15 @@
+/**
+ * motion.css — durations and easing curves. Strong custom curves instead of
+ * CSS defaults; UI feedback stays under 200ms, editorial reveals may run longer.
+ */
+
+:root {
+  --duration-press: 160ms;
+  --duration-hover: 150ms;
+  --duration-enter: 420ms;
+  --duration-reveal: 900ms;
+  --stagger: 60ms;
+
+  --curve-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --curve-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}

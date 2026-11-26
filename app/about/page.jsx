@@ -1,123 +1,90 @@
-import Image from 'next/image';
-import { Header } from '../components/ui/Header';
-import { Footer } from '../components/ui/Footer';
+/**
+ * About — modelled on the svelte-folio About sheet: biography beside the
+ * portrait, then a contact strip (location, CV, biography, email). Below it,
+ * the season-book sections for positions, honours and photography.
+ */
+import { Container, Section } from "../components/system/Section";
+import { Figure } from "../components/system/Figure";
+import { Label } from "../components/system/Label";
+import { Timeline } from "../components/system/Lists";
+import { person, biography, images, downloads, positions, honour } from "../content/profile";
 
 export const metadata = {
-  title: 'About | Dr David Kram',
-  description:
-    'Learn more about Dr David Kram, his background, and his work as an opera conductor.',
+  title: "About",
+  description: "Biography, positions and honours of Dr David Kram AM, conductor and Senior Fellow at The University of Melbourne.",
 };
 
 export default function About() {
+  const strip = [
+    { label: "Based in", value: person.location },
+    ...downloads.map((file) => ({ label: file.format, value: file.label, href: file.href, download: true })),
+    { label: "Email", value: person.email, href: `mailto:${person.email}` },
+  ];
+
   return (
     <>
-      <Header />
-      <main>
-        {/* CV Download Section */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 py-12 border-b border-border">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <h2 className="font-serif text-2xl font-bold mb-2">CV</h2>
-              <p className="text-foreground/70">
-                Download my complete professional CV
-              </p>
-            </div>
-            <a
-              href="/pdf/CV-Repo.pdf"
-              download
-              className="target-blank inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-light transition-colors shadow-md hover:shadow-lg">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              Download CV
-            </a>
-          </div>
-        </section>
-        {/* CV Download Section */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 py-12 border-b border-border">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <h2 className="font-serif text-2xl font-bold mb-2">Biography</h2>
-              <p className="text-foreground/70">Download my biography</p>
-            </div>
-            <a
-              href="/pdf/2025-12-24 concise_bio.pdf"
-              download
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-light transition-colors shadow-md hover:shadow-lg">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              Download Bio
-            </a>
-          </div>
-        </section>
+      <Container className="flex flex-col gap-10 pt-10 pb-16 md:pt-16 md:pb-24">
+        <h1 className="enter text-display leading-display font-medium tracking-display">About</h1>
 
-        {/* Gallery Section */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20 border-t border-border">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Gallery Image 1 */}
-            <div className="relative aspect-4/3 rounded-lg overflow-hidden shadow-xl group">
-              <Image
-                src="/gallery/2025-11-15 Dr David Kram AM.jpg"
-                fill
-                alt="Dr David Kram conducting"
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white font-medium">
-                    Performance at [Venue Name]
-                  </p>
-                  <p className="text-white/80 text-sm">[Year/Event Details]</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Gallery Image 2 */}
-            <div className="relative aspect-4/3 rounded-lg overflow-hidden shadow-xl group">
-              <Image
-                src="/gallery/David Kram laughing shot.jpg"
-                fill
-                alt="Dr David Kram in rehearsal"
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white font-medium">
-                    Rehearsal at [Venue Name]
-                  </p>
-                  <p className="text-white/80 text-sm">[Year/Event Details]</p>
-                </div>
-              </div>
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <div className="enter flex flex-col gap-5 md:col-span-7" style={{ "--i": 1 }}>
+            <Label tone="fg">
+              {person.fullTitle} {person.postNominals} · {person.credentials}
+            </Label>
+            <div className="flex max-w-measure flex-col gap-4">
+              {biography.map((paragraph, index) => (
+                <p key={paragraph} className={index === 0 ? "text-lg leading-heading" : "text-muted"}>
+                  {paragraph}
+                </p>
+              ))}
             </div>
           </div>
-          <p className="text-sm text-foreground/60 mt-6 text-center">
-            [Add your gallery images as gallery-1.jpg and gallery-2.jpg in the
-            public folder]
-          </p>
-        </section>
-      </main>
-      <Footer />
+          <Figure
+            image={images.portrait}
+            aspect="aspect-[4/5]"
+            position="50% 25%"
+            preload
+            reveal={false}
+            className="enter md:col-span-5"
+            style={{ "--i": 2 }}
+            sizes="(min-width: 768px) 40vw, 100vw"
+          />
+        </div>
+
+        <dl className="enter grid gap-6 border-y border-line py-5 sm:grid-cols-2 lg:grid-cols-4" style={{ "--i": 3 }}>
+          {strip.map((item) => (
+            <div key={item.label + item.value} className="flex min-w-0 flex-col gap-1">
+              <Label as="dt">{item.label}</Label>
+              <dd className="break-words">
+                {item.href ? (
+                  <a href={item.href} download={item.download ? "" : undefined} className="text-link">
+                    {item.value}
+                  </a>
+                ) : (
+                  item.value
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Container>
+
+      <Section id="positions" title="Positions" label="Appointments, in career order">
+        <Timeline items={positions} />
+      </Section>
+
+      <Section id="honours" title="Honours" label={honour.title}>
+        <figure className="flex flex-col gap-4">
+          <blockquote className="max-w-[24ch] text-xl leading-heading font-medium tracking-heading">
+            “{honour.citation}”
+          </blockquote>
+          <Label as="figcaption">AM citation</Label>
+        </figure>
+      </Section>
+
+      <Section id="photography" title="Photography">
+        <Figure image={images.conducting} aspect="aspect-[3/2]" position="50% 30%" sizes="(min-width: 768px) 70vw, 100vw" />
+      </Section>
     </>
   );
 }
